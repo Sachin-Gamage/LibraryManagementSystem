@@ -1,0 +1,368 @@
+MainComponent.tsx
+==================
+
+/* tslint:disable */
+import * as React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { AddItem } from './components/addItem';
+
+export class Container extends React.Component<{},{}>{
+
+    public render(){
+        return (
+        <Router>
+            <div>
+            <div className="header">
+              <h1>Library Management</h1>
+            </div>
+            <div className="navbar">
+                    <Link to="/add">Add</Link>
+                    <Link to="/delete">Delete</Link>
+                    <Link to="/view">View</Link>
+                    <Link to="/Burrow">Burrow</Link>
+                    <Link to="/Return">Return</Link>
+                    <Link to="Reports">Reports</Link>
+                    <Route exact path="/add" component={AddItem} />
+                    <Route path="/delete"  />
+                    <Route path="/view"  />
+                    <Route path="/Burrow"  />
+                    <Route path="/Return"  />
+                    <Route path="/Reports"  />
+            </div>
+          </div>
+        </Router>
+        );
+    }
+}
+
+Objects
+=======
+
+BookItem
+--------
+
+import { LibraryItem } from './libraryItem';
+
+export class BookItem extends LibraryItem{
+    private bookAuthours: string[];
+    private bookPublisher:string;
+    private pages:number;
+
+
+    /**
+     * Getter $bookAuthours
+     * @return {string[]}
+     */
+	public get $bookAuthours(): string[] {
+		return this.bookAuthours;
+	}
+
+    /**
+     * Setter $bookAuthours
+     * @param {string[]} value
+     */
+	public set $bookAuthours(value: string[]) {
+		this.bookAuthours = value;
+	}
+
+    /**
+     * Getter $bookPublisher
+     * @return {string}
+     */
+	public get $bookPublisher(): string {
+		return this.bookPublisher;
+	}
+
+    /**
+     * Setter $bookPublisher
+     * @param {string} value
+     */
+	public set $bookPublisher(value: string) {
+		this.bookPublisher = value;
+	}
+
+    /**
+     * Getter $pages
+     * @return {number}
+     */
+	public get $pages(): number {
+		return this.pages;
+	}
+
+    /**
+     * Setter $pages
+     * @param {number} value
+     */
+	public set $pages(value: number) {
+		this.pages = value;
+	}
+
+}
+
+dvdItem
+-----------
+
+import { LibraryItem } from './libraryItem';
+
+export class DVD extends LibraryItem{
+    private availableLanguages: string[];
+    private availbaleSubtitles: string[];
+    private producer: string;
+    private actors: string[];
+
+
+    /**
+     * Getter $availableLanguages
+     * @return {string[]}
+     */
+	public get $availableLanguages(): string[] {
+		return this.availableLanguages;
+	}
+
+    /**
+     * Setter $availableLanguages
+     * @param {string[]} value
+     */
+	public set $availableLanguages(value: string[]) {
+		this.availableLanguages = value;
+	}
+
+    /**
+     * Getter $availbaleSubtitles
+     * @return {string[]}
+     */
+	public get $availbaleSubtitles(): string[] {
+		return this.availbaleSubtitles;
+	}
+
+    /**
+     * Setter $availbaleSubtitles
+     * @param {string[]} value
+     */
+	public set $availbaleSubtitles(value: string[]) {
+		this.availbaleSubtitles = value;
+	}
+
+    /**
+     * Getter $producer
+     * @return {string}
+     */
+	public get $producer(): string {
+		return this.producer;
+	}
+
+    /**
+     * Setter $producer
+     * @param {string} value
+     */
+	public set $producer(value: string) {
+		this.producer = value;
+	}
+
+    /**
+     * Getter $actors
+     * @return {string[]}
+     */
+	public get $actors(): string[] {
+		return this.actors;
+	}
+
+    /**
+     * Setter $actors
+     * @param {string[]} value
+     */
+	public set $actors(value: string[]) {
+		this.actors = value;
+	}
+}
+
+libraryItem
+-----------
+
+import { Reader } from './reader';
+
+export abstract class LibraryItem {
+    private ISBNNumber:string;
+    private itemTitle:string;
+    private itemSector:string;
+    private publicationDate:Date;
+    private burrowDateAndTime:Date;
+    private reader:Reader;
+
+    /**
+     * Getter $ISBNNumber
+     * @return {string}
+     */
+	public get $ISBNNumber(): string {
+		return this.ISBNNumber;
+	}
+
+    /**
+     * Setter $ISBNNumber
+     * @param {string} value
+     */
+	public set $ISBNNumber(value: string) {
+		this.ISBNNumber = value;
+	}
+
+
+    /**
+     * Getter $itemTitle
+     * @return {string}
+     */
+	public get $itemTitle(): string {
+		return this.itemTitle;
+	}
+
+    /**
+     * Setter $itemTitle
+     * @param {string} value
+     */
+	public set $itemTitle(value: string) {
+		this.itemTitle = value;
+	}
+
+    /**
+     * Getter $itemSector
+     * @return {string}
+     */
+	public get $itemSector(): string {
+		return this.itemSector;
+	}
+
+    /**
+     * Setter $itemSector
+     * @param {string} value
+     */
+	public set $itemSector(value: string) {
+		this.itemSector = value;
+	}
+
+    /**
+     * Getter $publicationDate
+     * @return {Date}
+     */
+	public get $publicationDate(): Date {
+		return this.publicationDate;
+	}
+
+    /**
+     * Setter $publicationDate
+     * @param {Date} value
+     */
+	public set $publicationDate(value: Date) {
+		this.publicationDate = value;
+	}
+
+    /**
+     * Getter $burrowDateAndTime
+     * @return {Date}
+     */
+	public get $burrowDateAndTime(): Date {
+		return this.burrowDateAndTime;
+	}
+
+    /**
+     * Setter $burrowDateAndTime
+     * @param {Date} value
+     */
+	public set $burrowDateAndTime(value: Date) {
+		this.burrowDateAndTime = value;
+	}
+
+
+    /**
+     * Getter $reader
+     * @return {Reader}
+     */
+	public get $reader(): Reader {
+		return this.reader;
+	}
+
+    /**
+     * Setter $reader
+     * @param {Reader} value
+     */
+	public set $reader(value: Reader) {
+		this.reader = value;
+	}
+}
+
+Reader
+------
+
+
+
+export class Reader{
+
+    private id: number;
+    private name: string;
+    private mobileNumber: string;
+    private email: string;
+
+    /**
+     * Getter $id
+     * @return {number}
+     */
+	public get $id(): number {
+		return this.id;
+	}
+
+    /**
+     * Setter $id
+     * @param {number} value
+     */
+	public set $id(value: number) {
+		this.id = value;
+	}
+
+    /**
+     * Getter $name
+     * @return {string}
+     */
+	public get $name(): string {
+		return this.name;
+	}
+
+    /**
+     * Setter $name
+     * @param {string} value
+     */
+	public set $name(value: string) {
+		this.name = value;
+	}
+
+    /**
+     * Getter $mobileNumber
+     * @return {string}
+     */
+	public get $mobileNumber(): string {
+		return this.mobileNumber;
+	}
+
+    /**
+     * Setter $mobileNumber
+     * @param {string} value
+     */
+	public set $mobileNumber(value: string) {
+		this.mobileNumber = value;
+	}
+
+    /**
+     * Getter $email
+     * @return {string}
+     */
+	public get $email(): string {
+		return this.email;
+	}
+
+    /**
+     * Setter $email
+     * @param {string} value
+     */
+	public set $email(value: string) {
+		this.email = value;
+	}
+   
+}
+
